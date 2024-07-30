@@ -88,3 +88,26 @@ test("원인이 명확하지 않은 에러가 발생하면 '알 수 없는 에�
     screen.getByText("알 수 없는 에러가 발생했습니다")
   ).toBeInTheDocument();
 });
+
+/**
+ * 인터랙션을 실행한 후 스냅숏 기록하기
+ * 렌더링 초기 상태의 스냅숏 남기기
+ */
+test("Snapshot: 등록폼이 표시된다", async () => {
+  mockPostMyAddress();
+
+  const { container } = render(<RegisterAddress />);
+  expect(container).toMatchSnapshot();
+});
+/**
+ * 폼을 전송하고 성공 읍답이 반환된 시점의 스냅숏을 기록
+ */
+test("Snapshot: 등록폼이 표시된다", async () => {
+  // mockPostMyAddress();
+  const mockFn = mockPostMyAddress();
+  const { container } = render(<RegisterAddress />);
+  const submitValues = await fillValuesAndSubmit();
+
+  expect(mockFn).toHaveBeenCalledWith(expect.objectContaining(submitValues));
+  expect(container).toMatchSnapshot();
+});

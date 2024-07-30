@@ -57,3 +57,26 @@ test("버튼을 클릭하면 이벤트 핸들러가 실행된다", () => {
   fireEvent.click(screen.getByRole("button"));
   expect(mockFn).toHaveBeenCalled();
 });
+
+/**
+ * UI 컴포넌트가 예기치 않게 변경됐는 지 검증하고 싶다면 스냅숏 테스트
+ * UI 컴포넌트를 HTML 문자열로 해당 시점의 렌더링 결과를 외부 파일에 저장
+ */
+test("Snapshot : 계정명인 'taro' 가 표시된다", () => {
+  const { container } = render(<Form name="taro" />);
+  expect(container).toMatchSnapshot();
+});
+
+/**
+ * 회귀 테스트 발생시키기
+ * 이미 커밋된 .snap 파일과 현시점의 스냅숏 파일을 비교하여 차이점이 발견되면 테스트가 실패
+ */
+test("Snapshot : 계정명인 'taro' 가 표시됐는 지 확인한다", () => {
+  const { container } = render(<Form name="jiro" />);
+  expect(container).toMatchSnapshot();
+});
+
+/**
+ * 실패한 스냅숏을 갱신하기 위해
+ * npx jest --updateSnapshot
+ */
