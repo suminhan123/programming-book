@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, logRoles, render, screen } from "@testing-library/react";
 import { Form } from "./Form";
 
 /**
@@ -80,3 +80,11 @@ test("Snapshot : 계정명인 'taro' 가 표시됐는 지 확인한다", () => {
  * 실패한 스냅숏을 갱신하기 위해
  * npx jest --updateSnapshot
  */
+
+/**
+ * 테스트 코드의 렌더링 결과에서 역할과 접근 가능한 이름을 확인
+ */
+test("logRoles: 렌더링 결과로부터 역할과 접근 가능한 이름을 확인한다", () => {
+  const { container } = render(<Form name="taro" />);
+  logRoles(container);
+});
