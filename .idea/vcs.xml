@@ -2,7 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frontend-testing-book/03-처음 시작하는 단위 테스트/03-unittest" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/frontend-testing-book/03-처음 시작하는 단위 테스트/unittest" vcs="Git" />
   </component>
 </project>
