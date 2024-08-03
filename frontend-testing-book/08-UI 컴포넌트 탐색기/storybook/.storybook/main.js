@@ -2,6 +2,9 @@ const path = require("path");
 
 module.exports = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
+
+  // 특정 URL에서만 사용할 수 있는 UI 컴포넌트가 존재
+  // router 애드온이 필요 => storybook-addon-next-router
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",

@@ -44,6 +44,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  // router 애드온이 필요 => storybook-addon-next-router
   nextRouter: {
     Provider: RouterContext.Provider,
   },
