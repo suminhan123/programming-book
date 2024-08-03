@@ -30,6 +30,8 @@ export const parameters = {
 */
 
 export const parameters = {
+  // Actions를 활용한 이벤트 검증
+  // on으로 시작하는 모든 이벤트 핸들러 자동적으로 Actions 패널에 로그를 출력
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
