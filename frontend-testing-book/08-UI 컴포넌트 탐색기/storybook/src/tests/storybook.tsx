@@ -12,7 +12,7 @@ export const LoginUserInfoProviderDecorator = (
   Story: PartialStoryFn<ReactFramework, Args>
 ) => (
   <LoginUserInfoProvider>
-    <Story />
+    <Story /> {/*스토리가 Context 를 통해 LoginUserInfo를 참조 */}
   </LoginUserInfoProvider>
 );
 /**
