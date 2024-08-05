@@ -8,6 +8,8 @@ module.exports = {
     "@storybook/addon-essentials",
     // 스토리북 기능 play function 을 사용하기 위해 설정 추가
     "@storybook/addon-interactions",
+
+    // 스토리북에서 컴포넌트 단위로 접근성을 검증하기 위해 추가
     "@storybook/addon-a11y",
 
     // 특정 URL에서만 사용할 수 있는 UI 컴포넌트가 존재
