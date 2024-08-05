@@ -1,0 +1,38 @@
+# AWS_ACCESS_KEY_ID : IAM 사용자의 액세스 키
+# AWS_BUCKET_NAME : S3 버킷 이름
+# AWS_SECRET_ACCESS_KEY : IAM 사용자의 비밀 액세스 키
+# REG_NOTIFY_CLIENT_ID : reg-sut 의 Client ID
+# => 깃허브 저장소에 Actions Secret 생성
+
+name: Run VRT
+
+on: push
+
+env:
+  REG_NOTIFY_CLIENT_ID: ${{ secrets.REG_NOTIFY_CLIENT_ID }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 이 값이 없으면 부모 커밋을 취득하지 못해 비교를 진행할 수 없어 테스트 실패
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+      - name: Install dependencies
+        run: npm ci
+      - name: Buid Storybook
+        run: npm run storybook:build
+      - name: Run Storycap
+        run: npm run vrt:snapshot
+      - name: Run reg-suit
+        run: npm run vrt:run
